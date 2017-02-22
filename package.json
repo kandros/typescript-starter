@@ -1,0 +1,40 @@
+{
+  "name": "typescript-starter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": "git@github.com:kandros/typescript-starter.git",
+  "author": "jaga santagostino <kandros5591@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test:setup-database": "ts-node scripts/run-setup.ts",
+    "pretest:integration": "npm run test:setup-database",
+    "test:integration": "jest --env=node",
+    "clean": "shx rm -rf lib lib-esm build",
+    "test:watch": "jest --env=node --watch",
+    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm",
+    "precommit": "echo building... && npm run build"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/jest": "^18.1.1",
+    "husky": "^0.13.1",
+    "jest": "^19.0.1",
+    "shx": "^0.2.2",
+    "ts-jest": "^19.0.0",
+    "typescript": "^2.2.1"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}
